@@ -1,0 +1,124 @@
+create table actividades
+(
+    id     bigint auto_increment
+        primary key,
+    nombre varchar(255) not null
+);
+
+create table usuarios
+(
+    id               bigint auto_increment
+        primary key,
+    apellidos        varchar(255) not null,
+    email            varchar(255) not null,
+    fecha_nacimiento varchar(255) not null,
+    nombre           varchar(255) not null,
+    password         varchar(255) not null,
+    sexo             varchar(255) not null,
+    telefono         varchar(255) not null,
+    username         varchar(255) not null,
+    constraint UK_kfsp0s1tflm1cwlj8idhqsad0
+        unique (email),
+    constraint UK_m2dvbwfge291euvmk6vkkocao
+        unique (username)
+);
+
+create table administradores
+(
+    admin_id bigint not null
+        primary key,
+    constraint FKf51cy1u38ipxnhucujj2d1vvu
+        foreign key (admin_id) references usuarios (id)
+);
+
+create table consumidores
+(
+    consumidor_id bigint not null
+        primary key,
+    constraint FKkedmsserkbb2h6d8o0ko2jev9
+        foreign key (consumidor_id) references usuarios (id)
+);
+
+create table consumidor_actividad
+(
+    id_actividad  bigint not null,
+    id_consumidor bigint not null,
+    primary key (id_actividad, id_consumidor),
+    constraint FK79au7phx8xxt0n14sabuytxnd
+        foreign key (id_actividad) references actividades (id),
+    constraint FKnccsqe8k9n0owf070a30ptgi5
+        foreign key (id_consumidor) references consumidores (consumidor_id)
+);
+
+create table demandas
+(
+    id           bigint auto_increment
+        primary key,
+    id_actividad bigint       null,
+    id_creador   bigint       null,
+    direccion    varchar(255) not null,
+    fecha        varchar(255) not null,
+    constraint FKdtt56wvtodkya53xtmwckx073
+        foreign key (id_creador) references consumidores (consumidor_id),
+    constraint FKpvqlsk39su2vorxjbl97mk3w9
+        foreign key (id_actividad) references actividades (id)
+);
+
+create table notificaciones
+(
+    leido       bit          not null,
+    id          bigint auto_increment
+        primary key,
+    id_emisor   bigint       null,
+    id_receptor bigint       null,
+    descripcion varchar(255) not null,
+    constraint FKbldavx7b78k0ww4qwpofcfah6
+        foreign key (id_emisor) references usuarios (id),
+    constraint FKphc0fealebrq88y0glpv41joh
+        foreign key (id_receptor) references usuarios (id)
+);
+
+create table ofertantes
+(
+    ofertante_id bigint not null
+        primary key,
+    constraint FK3g2m7evp1n60l90d9gq5aby6o
+        foreign key (ofertante_id) references usuarios (id)
+);
+
+create table ofertante_actividad
+(
+    id_actividad bigint not null,
+    id_ofertante bigint not null,
+    primary key (id_actividad, id_ofertante),
+    constraint FK743faypmr6v7wy78iw42k17ra
+        foreign key (id_actividad) references actividades (id),
+    constraint FKel3sibq6dvll6hcixs796jwnb
+        foreign key (id_ofertante) references ofertantes (ofertante_id)
+);
+
+create table ofertas
+(
+    id           bigint auto_increment
+        primary key,
+    id_actividad bigint       null,
+    id_creador   bigint       null,
+    direccion    varchar(255) not null,
+    fecha        varchar(255) not null,
+    constraint FK3hc0u3wf5y39103t3omqotff2
+        foreign key (id_actividad) references actividades (id),
+    constraint FKp3ors7c8vn3g6rys6e29of3o1
+        foreign key (id_creador) references ofertantes (ofertante_id)
+);
+
+create table consumidor_oferta
+(
+    id_actividad  bigint not null,
+    id_consumidor bigint not null,
+    primary key (id_actividad, id_consumidor),
+    constraint FK3ssxg2h5w24exxvaioqljolnb
+        foreign key (id_consumidor) references consumidores (consumidor_id),
+    constraint FK5wgnicw53pgcitjte3v18gtey
+        foreign key (id_actividad) references ofertas (id)
+);
+

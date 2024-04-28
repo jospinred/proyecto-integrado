@@ -1,0 +1,34 @@
+-- Inserts para la tabla actividades
+INSERT INTO actividades (nombre) VALUES ('Natación'), ('Yoga'), ('Escalada'), ('Baloncesto'), ('Senderismo');
+
+-- Inserts para la tabla usuarios
+INSERT INTO usuarios (apellidos, email, fecha_nacimiento, nombre, password, sexo, telefono, username)
+VALUES ('González', 'gonzalez@mail.com', '1990-05-15', 'Juan', 'password123', 'Masculino', '123456789', 'juang'),
+       ('López', 'lopez@mail.com', '1985-08-20', 'María', 'password456', 'Femenino', '987654321', 'marial'),
+       ('Martínez', 'martinez@mail.com', '1994-02-12', 'Laura', 'password789', 'Femenino', '123459876', 'lauram');
+
+-- Inserts para la tabla administradores
+INSERT INTO administradores (admin_id) VALUES (1);
+
+-- Inserts para la tabla consumidores
+INSERT INTO consumidores (consumidor_id) VALUES (2), (3);
+
+-- Inserts para la tabla consumidor_actividad
+INSERT INTO consumidor_actividad (id_actividad, id_consumidor) VALUES (1, 2), (2, 3);
+
+-- Inserts para la tabla demandas
+INSERT INTO demandas (id_actividad, id_creador, direccion, fecha) VALUES (1, 2, 'Calle Principal 123, Sevilla', '2024-04-28');
+
+-- Inserts para la tabla ofertantes
+INSERT INTO ofertantes (ofertante_id) VALUES (1);
+
+-- Inserts para la tabla ofertante_actividad
+INSERT INTO ofertante_actividad (id_actividad, id_ofertante) VALUES (3, 1);
+
+-- Inserts para la tabla ofertas
+INSERT INTO ofertas (id_actividad, id_creador, direccion, fecha)
+VALUES (3, 1, 'Avenida Central 456', '2024-04-29'),
+       (2, 1, 'Calle falta 123', '2024-05-12');
+
+-- Inserts para la tabla consumidor_oferta
+INSERT INTO consumidor_oferta (id_actividad, id_consumidor) VALUES (1, 2), (2, 3);
