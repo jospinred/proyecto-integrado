@@ -1,0 +1,49 @@
+package com.velazquez.proyectointegrado.services.Impl;
+
+import com.velazquez.proyectointegrado.model.Ofertante;
+import com.velazquez.proyectointegrado.model.Usuario;
+
+import com.velazquez.proyectointegrado.repository.OfertanteRepository;
+import com.velazquez.proyectointegrado.services.OfertanteService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class OfertanteServiceImpl implements OfertanteService {
+
+    @Autowired
+    OfertanteRepository ofertanteRepo;
+    @Override
+    public Ofertante insertOfertante(Ofertante ofertante) {
+        if (ofertante != null) {
+            return ofertanteRepo.save(ofertante);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Ofertante> getOfertantes() {
+        return ofertanteRepo.findAll();
+    }
+
+    @Override
+    public Optional<Ofertante> findUsuarioById(Long id) {
+        return ofertanteRepo.findById(id);
+    }
+
+    @Override
+    public Ofertante updateOfertante(Ofertante ofertante) {
+        if (ofertante == null || ofertante.getId() == null) {
+            return null;
+        }
+        return ofertanteRepo.save(ofertante);
+    }
+
+    @Override
+    public void deleteOfertante(Long id) {
+        ofertanteRepo.deleteById(id);
+    }
+}

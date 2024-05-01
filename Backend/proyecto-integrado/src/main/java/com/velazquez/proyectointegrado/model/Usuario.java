@@ -1,14 +1,17 @@
 package com.velazquez.proyectointegrado.model;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "usuarios")
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,14 +32,24 @@ public class Usuario implements Serializable {
     @Column(nullable = false)
     private String fechaNacimiento;
 
-    @Column(nullable = false)
+    @Column
     private String sexo;
 
-    @Column(nullable = false)
+    @Column
     private String telefono;
 
     @Column(unique = true, nullable = false)
     private String email;
+    @Column
+    private boolean activo;
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 
     @OneToMany(mappedBy = "emisor", cascade = CascadeType.ALL)
     private Set<Notificacion> notificaciones_enviadas;
@@ -74,8 +87,33 @@ public class Usuario implements Serializable {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
     public String getPassword() {
@@ -132,5 +170,23 @@ public class Usuario implements Serializable {
 
     public void setNotificaciones_recibidas(Notificacion notificacion) {
         this.notificaciones_recibidas.add(notificacion);
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                ", activo=" + activo +
+                ", notificaciones_enviadas=" + notificaciones_enviadas +
+                ", notificaciones_recibidas=" + notificaciones_recibidas +
+                '}';
     }
 }
