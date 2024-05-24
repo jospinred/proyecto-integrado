@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,8 @@ import java.util.function.Function;
 public class JWTService {
 
     private static final String SECRET_KEY = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
+
+    private long jwtExpirationInMs = 3600000;
 
     public String extractEmail(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -45,8 +48,6 @@ public class JWTService {
     public Boolean isTokenValid(String token, UserDetails userDetails) {
         final String userEmail = extractEmail(token);
 
-        // En nuestro caso, estamos utilizando el e-mail como nombre de usuario para hacer login,
-        // pero en la interfaz UserDetails el nombre del usuario es el campo username
         return (userEmail.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 

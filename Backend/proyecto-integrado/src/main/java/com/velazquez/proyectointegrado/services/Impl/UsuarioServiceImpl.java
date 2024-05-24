@@ -25,6 +25,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    public Optional<Usuario> findUsuarioByUsername(String username) {
+        return userRepo.findByUsername(username);
+    }
+
+    @Override
     public Usuario updateUsuario(Usuario usuario) {
         if (usuario == null || usuario.getId() == null) {
             return null;

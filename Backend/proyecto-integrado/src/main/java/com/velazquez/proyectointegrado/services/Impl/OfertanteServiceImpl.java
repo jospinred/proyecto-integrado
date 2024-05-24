@@ -5,6 +5,7 @@ import com.velazquez.proyectointegrado.model.Usuario;
 
 import com.velazquez.proyectointegrado.repository.OfertanteRepository;
 import com.velazquez.proyectointegrado.services.OfertanteService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,16 @@ public class OfertanteServiceImpl implements OfertanteService {
             return ofertanteRepo.save(ofertante);
         }
         return null;
+    }
+
+    @Transactional
+    @Override
+    public Long insertOfertanteId(Long id) {
+        if(id != null){
+            ofertanteRepo.insertById(id);
+            return 1L;
+        }
+        return 0L;
     }
 
     @Override

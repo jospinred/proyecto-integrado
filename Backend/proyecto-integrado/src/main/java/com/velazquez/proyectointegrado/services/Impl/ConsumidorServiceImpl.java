@@ -3,6 +3,7 @@ package com.velazquez.proyectointegrado.services.Impl;
 import com.velazquez.proyectointegrado.model.Consumidor;
 import com.velazquez.proyectointegrado.repository.ConsumidorRepository;
 import com.velazquez.proyectointegrado.services.ConsumidorService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,16 @@ public class ConsumidorServiceImpl implements ConsumidorService {
             return consumidorRepo.save(consumidor);
         }
         return null;
+    }
+
+    @Transactional
+    @Override
+    public Long insertConsumidorId(Long id) {
+        if(id != null){
+            consumidorRepo.insertById(id);
+            return 1L;
+        }
+        return 0L;
     }
 
     @Override

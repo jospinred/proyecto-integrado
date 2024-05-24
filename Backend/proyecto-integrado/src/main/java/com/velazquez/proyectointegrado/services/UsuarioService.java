@@ -9,6 +9,7 @@ public interface UsuarioService {
     Usuario insertUsuario(Usuario usuario);
     List<Usuario> getUsuarios();
     Optional<Usuario> findUsuarioById(Long id);
+    Optional<Usuario> findUsuarioByUsername(String username);
     Usuario updateUsuario(Usuario usuario);
     void deleteUsuario(Long id);
     Optional<Usuario> login(String username, String password);

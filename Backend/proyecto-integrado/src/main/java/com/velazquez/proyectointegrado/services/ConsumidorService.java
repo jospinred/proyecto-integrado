@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface ConsumidorService {
     Consumidor insertConsumidor(Consumidor usuario);
+    Long insertConsumidorId(Long id);
     List<Consumidor> getConsumidor();
     Optional<Consumidor> findUsuarioById(Long id);
     Consumidor updateConsumidor(Consumidor usuario);

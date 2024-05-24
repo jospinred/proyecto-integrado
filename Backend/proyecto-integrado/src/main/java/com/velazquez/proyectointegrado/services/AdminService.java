@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface AdminService {
     Admin insertAdmin(Admin usuario);
+    Long insertAdminId(Long id);
     List<Admin> getAdmins();
     Optional<Admin> findUsuarioById(Long id);
     Admin updateAdmin(Admin usuario);

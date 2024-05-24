@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface OfertanteService {
     Ofertante insertOfertante(Ofertante usuario);
+    Long insertOfertanteId(Long id);
     List<Ofertante> getOfertantes();
     Optional<Ofertante> findUsuarioById(Long id);
     Ofertante updateOfertante(Ofertante usuario);
