@@ -16,4 +16,7 @@ public interface OfertanteRepository extends JpaRepository<Ofertante, Long> {
     @Modifying
     @Query(value = "INSERT INTO ofertantes (ofertante_id) VALUES (?1)", nativeQuery = true)
     void insertById(Long id);
+
+    @Query(value = "SELECT COUNT(*) FROM ofertantes WHERE ofertante_id = (?1)", nativeQuery = true)
+    int selectById(Long id);
 }

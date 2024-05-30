@@ -9,7 +9,9 @@ public interface OfertanteService {
     Ofertante insertOfertante(Ofertante usuario);
     Long insertOfertanteId(Long id);
     List<Ofertante> getOfertantes();
-    Optional<Ofertante> findUsuarioById(Long id);
+    Optional<Ofertante> findOfertanteById(Long id);
+    Optional<Ofertante> findOfertanteByUsername(String username);
     Ofertante updateOfertante(Ofertante usuario);
     void deleteOfertante(Long id);
+    int selectById(Long id);
 }

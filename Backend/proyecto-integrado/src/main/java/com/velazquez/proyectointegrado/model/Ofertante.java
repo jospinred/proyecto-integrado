@@ -1,5 +1,6 @@
 package com.velazquez.proyectointegrado.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -20,5 +21,6 @@ public class Ofertante extends Usuario{
     private Set<Actividad> actividadesCualificado = new HashSet<Actividad>();
 
     @OneToMany(mappedBy = "creadorOferta", cascade = CascadeType.ALL)
+    @JsonBackReference
     private Set<Oferta> ofertas;
 }

@@ -1,5 +1,6 @@
 package com.velazquez.proyectointegrado.config;
 
+import com.velazquez.proyectointegrado.model.Oferta;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,11 @@ public class Config {
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
+    }
+
+    @Bean
+    public Oferta oferta() {
+        return new Oferta();
     }
 
     @Bean

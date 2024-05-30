@@ -16,4 +16,7 @@ public interface AdminRepository extends JpaRepository<Admin, Long> {
     @Modifying
     @Query(value = "INSERT INTO administradores (admin_id) VALUES (?1)", nativeQuery = true)
     void insertById(Long id);
+
+    @Query(value = "SELECT COUNT(*) FROM administradores WHERE admin_id = (?1)", nativeQuery = true)
+    int selectById(Long id);
 }

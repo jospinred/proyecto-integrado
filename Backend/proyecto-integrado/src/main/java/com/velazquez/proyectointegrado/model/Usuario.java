@@ -160,16 +160,27 @@ public class Usuario implements Serializable, UserDetails {
         return notificaciones_enviadas;
     }
 
-    public void setNotificaciones_enviadas(Notificacion notificacion) {
+    public void setNotificaciones_enviadas(Set<Notificacion> notificaciones_enviadas) {
+        this.notificaciones_enviadas = notificaciones_enviadas;
+    }
+
+    public void addNotificacion_enviada(Notificacion notificacion) {
         this.notificaciones_enviadas.add(notificacion);
     }
+
+
+    public void addNotificacion_recibida(Notificacion notificacion) {
+        this.notificaciones_recibidas.add(notificacion);
+    }
+
+
 
     public Set<Notificacion> getNotificaciones_recibidas() {
         return notificaciones_recibidas;
     }
 
-    public void setNotificaciones_recibidas(Notificacion notificacion) {
-        this.notificaciones_recibidas.add(notificacion);
+    public void setNotificaciones_recibidas(Set<Notificacion> notificaciones_recibidas) {
+        this.notificaciones_recibidas = notificaciones_recibidas;
     }
 
     @Override

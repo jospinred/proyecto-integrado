@@ -58,11 +58,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario insertUsuario(Usuario usuario) {
-
         if (usuario != null) {
             return userRepo.save(usuario);
         }
-
         return null;
     }
 

@@ -27,4 +27,28 @@ public class Consumidor extends Usuario{
 
     @OneToMany(mappedBy = "creadorDemanda", cascade = CascadeType.ALL)
     private Set<Demanda> demandas;
+
+    public Set<Actividad> getActividadesPreferencia() {
+        return actividadesPreferencia;
+    }
+
+    public void setActividadesPreferencia(Actividad actividadPreferencia) {
+        this.actividadesPreferencia.add(actividadPreferencia);
+    }
+
+    public Set<Oferta> getActividadesApuntado() {
+        return actividadesApuntado;
+    }
+
+    public void setActividadesApuntado(Oferta actividadApuntado) {
+        this.actividadesApuntado.add(actividadApuntado);
+    }
+
+    public Set<Demanda> getDemandas() {
+        return demandas;
+    }
+
+    public void setDemandas(Demanda demanda) {
+        this.demandas.add(demanda);
+    }
 }

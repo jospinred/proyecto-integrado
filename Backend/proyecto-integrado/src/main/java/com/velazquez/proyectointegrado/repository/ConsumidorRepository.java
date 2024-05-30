@@ -16,4 +16,11 @@ public interface ConsumidorRepository extends JpaRepository<Consumidor, Long> {
     @Modifying
     @Query(value = "INSERT INTO consumidores (consumidor_id) VALUES (?1)", nativeQuery = true)
     void insertById(Long id);
+
+    @Query(value = "SELECT COUNT(*) FROM consumidores WHERE consumidor_id = (?1)", nativeQuery = true)
+    int selectById(Long id);
+
+    @Modifying
+    @Query(value = "DELETE FROM consumidores WHERE consumidor_id = (?1)", nativeQuery = true)
+    void deleteById(Long id);
 }

@@ -55,4 +55,9 @@ public class AdminServiceImpl implements AdminService {
     public void deleteAdmin(Long id) {
         adminRepo.deleteById(id);
     }
+
+    @Override
+    public int selectById(Long id) {
+        return adminRepo.selectById(id);
+    }
 }

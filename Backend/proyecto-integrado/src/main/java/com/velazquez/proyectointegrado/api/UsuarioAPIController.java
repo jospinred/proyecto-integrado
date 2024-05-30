@@ -2,6 +2,7 @@ package com.velazquez.proyectointegrado.api;
 
 import com.velazquez.proyectointegrado.api.dto.JwtResponse;
 import com.velazquez.proyectointegrado.api.dto.LoginDTO;
+import com.velazquez.proyectointegrado.api.dto.UpdatePassDTO;
 import com.velazquez.proyectointegrado.api.dto.UsuarioDTO;
 import com.velazquez.proyectointegrado.mappers.Mapper;
 import com.velazquez.proyectointegrado.model.Admin;
@@ -20,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -99,23 +101,25 @@ public class UsuarioAPIController {
         }
         Usuario usuario = user.get();
         int permisos = 0;
-        Optional<Consumidor> consumidor = consumidorService.findUsuarioById(usuario.getId());
-        Optional<Ofertante> ofertante = ofertanteService.findUsuarioById(usuario.getId());
-        Optional<Admin> admin = adminService.findUsuarioById(usuario.getId());
-        if(consumidor.isPresent()){
+        int consumidor = consumidorService.selectById(usuario.getId());
+        int ofertante = ofertanteService.selectById(usuario.getId());
+        int admin = adminService.selectById(usuario.getId());
+        System.out.println("Es consumidor? "+ consumidor);
+        System.out.println("Es ofertante? "+ ofertante);
+        System.out.println("Es admin? "+ admin);
+        if(consumidor>0){
             permisos+=1;
         }
-        if(ofertante.isPresent()){
+        if(ofertante>0){
             permisos+=3;
         }
-        if(admin.isPresent()){
+        if(admin>0){
             permisos+=5;
         }
         // Generar token JWT
         String token = jwtService.generateToken((UserDetails) usuario);
-
         // Devolver el token en la respuesta
-        return ResponseEntity.ok(new JwtResponse(token,permisos, user.get().getUsername()));
+        return ResponseEntity.ok(new JwtResponse(token,permisos, user.get().getUsername(), user.get().getId()));
     }
 
     // Obtener un usuario por su id
@@ -127,5 +131,22 @@ public class UsuarioAPIController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(usuarioMapper.mapTo(usuario.get()), HttpStatus.OK);
+    }
+
+    // Actualizar un usuario por su id
+    @PutMapping(path = "/api/usuario")
+    public ResponseEntity<Object> updateUsuario(@RequestBody UpdatePassDTO usuarioPass) {
+        logger.info("Update usuario con id: " + usuarioPass.getId());
+        HashMap<String,String> mapa = new HashMap<>();
+        Optional<Usuario> usuarioOpcional = usuarioService.findUsuarioById(usuarioPass.getId());
+        System.out.println(usuarioOpcional);
+        if (usuarioOpcional.isEmpty()) {
+            mapa.put("Resultado", "El usuario no se encuentra en la base de datos");
+            return new ResponseEntity<>(mapa,HttpStatus.NOT_FOUND);
+        }
+        Usuario usuario = usuarioOpcional.get();
+        usuario.setPassword(new BCryptPasswordEncoder(15).encode(usuarioPass.getPassword()));
+        Usuario usuarioUpdated = usuarioService.updateUsuario(usuario);
+        return new ResponseEntity<>(usuarioMapper.mapTo(usuarioUpdated), HttpStatus.OK);
     }
 }

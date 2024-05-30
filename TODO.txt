@@ -1,0 +1,15 @@
+1. Boton disabled de ofertas en las que estes apuntado
+2. Perfil (borrar su propia cuenta,poder modificar actividades ofertadas
+3. Cambiar inicio si esta logeado
+
+
+6.Filtro para la lista de actividades y demandas
+4. Añadir preferencias consumidores
+5. Documentacion
+7. Panel de administracion
+
+
+Extra: 
+5.notificaciones
+8.CSS de todo
+9. terminos y condiciones

@@ -1,7 +1,6 @@
 package com.velazquez.proyectointegrado.services.Impl;
 
 import com.velazquez.proyectointegrado.model.Ofertante;
-import com.velazquez.proyectointegrado.model.Usuario;
 
 import com.velazquez.proyectointegrado.repository.OfertanteRepository;
 import com.velazquez.proyectointegrado.services.OfertanteService;
@@ -41,8 +40,13 @@ public class OfertanteServiceImpl implements OfertanteService {
     }
 
     @Override
-    public Optional<Ofertante> findUsuarioById(Long id) {
+    public Optional<Ofertante> findOfertanteById(Long id) {
         return ofertanteRepo.findById(id);
+    }
+
+    @Override
+    public Optional<Ofertante> findOfertanteByUsername(String username) {
+        return ofertanteRepo.findByUsername(username);
     }
 
     @Override
@@ -56,5 +60,10 @@ public class OfertanteServiceImpl implements OfertanteService {
     @Override
     public void deleteOfertante(Long id) {
         ofertanteRepo.deleteById(id);
+    }
+
+    @Override
+    public int selectById(Long id) {
+        return ofertanteRepo.selectById(id);
     }
 }

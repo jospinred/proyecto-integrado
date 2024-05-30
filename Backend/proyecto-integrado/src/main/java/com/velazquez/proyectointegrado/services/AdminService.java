@@ -14,4 +14,5 @@ public interface AdminService {
     Optional<Admin> findUsuarioById(Long id);
     Admin updateAdmin(Admin usuario);
     void deleteAdmin(Long id);
+    int selectById(Long id);
 }

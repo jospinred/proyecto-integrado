@@ -56,7 +56,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
+            <version>3.3.0</version>
         </dependency>
         <!--        DEPENDENCIA BCRYPT -->
         <dependency>

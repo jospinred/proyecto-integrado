@@ -5,10 +5,13 @@ public class JwtResponse {
     private int permisos;
     private String username;
 
-    public JwtResponse(String token, int permisos, String username) {
+    private Long id;
+
+    public JwtResponse(String token, int permisos, String username, Long id) {
         this.token = token;
         this.permisos = permisos;
         this.username = username;
+        this.id = id;
     }
 
     public String getToken() {
@@ -33,5 +36,13 @@ public class JwtResponse {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
