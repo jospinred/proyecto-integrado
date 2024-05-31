@@ -13,3 +13,5 @@ Extra:
 5.notificaciones
 8.CSS de todo
 9. terminos y condiciones
+
+BORRAR NODE_MODULES DE GITHUB
