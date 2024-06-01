@@ -1,0 +1,84 @@
+<span><b>Filtros</b></span>
+<div class="contenedorFiltros">
+    <div class="bloqueFiltros">
+        <label for="filtroFechaDemanda">Fecha</label>
+        <input class="form-control" id="filtroFechaDemanda" type="date" name="filtroFechaDemanda" [(ngModel)]="filtro.fecha" />
+        <button class="btnBorrarFecha" type="button" (click)="borrarFechaInput()">Borrar fecha</button>
+    </div>
+    <div class="bloqueFiltros">
+        <label for="filtroLocalidadDemanda">Localidad</label>
+        <input class="form-control" id="filtroLocalidadDemanda" type="text" name="filtroLocalidadDemanda"
+            [(ngModel)]="filtro.localidad" />
+    </div>
+    <div class="bloqueFiltros">
+        <label for="filtroActividadDemanda">Actividad</label>
+        <select name="filtroActividadDemanda" id="filtroActividadDemanda" class="form-control"
+            [(ngModel)]="filtro.actividad">
+            @for (a of actividades; track $index) {
+            <option [value]="a.nombre">{{a.nombre}}</option>
+            }
+        </select>
+        <button class="btnBorrarActividad" type="button" (click)="borrarActividadInput()">Borrar actividad</button>
+    </div>
+    <div class="bloqueFiltros bloqueBoton">
+        <button class="btnFiltros" type="button" (click)="filtroActividades()">Aplicar filtros</button>
+    </div>
+    <div class="bloqueFiltros bloqueBoton">
+        <button class="btnFiltros filtroNaranja" type="button" (click)="borrarFiltros()">Borrar filtros</button>
+    </div>
+</div>
+<p-divider />
+<p-dataView #dv [value]="listaActividadesFiltrada" [rows]="6" [paginator]="true">
+    <ng-template pTemplate="list" let-actividades>
+        <div class="contenedor">
+            <div class="col-12" *ngFor="let item of actividades; let first = first" class="col-12">
+                <div class="lista">
+                    <div class="elemento-lista">
+                        <div class="elemento-lista-sub">
+                            <div>
+                                <span class="datoSecundario">Fecha: {{ item.fecha }}</span>
+                                <span class="datoSecundario">Localidad: {{ item.localidad }}</span>
+                                <div class="datoActividad">{{ item.actividad }}</div>
+                            </div>
+                        </div>
+                        <div class="flex flex-column md:align-items-end gap-5">
+                            <div style="margin-top: .5vw;">
+                                <p-button type="button" label="Crear oferta" (click)="abrirModalDemanda(item)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p-divider />
+            </div>
+        </div>
+    </ng-template>
+</p-dataView>
+
+<div class="contenedorDemanda" #modalBackgroundDemanda>
+    <div class="modalDemanda" #modalDemanda>
+        <span class="cerrarModal" (click)="cerrarModalDemanda()">X</span>
+        <label for="preparacionNecesariaDemanda" class="textoModalPrimero">Preparacion necesaria</label>
+        <input name="preparacionNecesariaDemanda" type="text" pInputText
+            [(ngModel)]="datosParaOfertar.preparacionNecesaria" />
+        <label for="materialOfertadoDemanda" class="textoModal">Material ofertado</label>
+        <input name="materialOfertadoDemanda" type="text" pInputText [(ngModel)]="datosParaOfertar.materialOfertado" />
+        <label for="materialNecesarioDemanda" class="textoModal">Material necesario</label>
+        <input name="materialNecesarioDemanda" type="text" pInputText
+            [(ngModel)]="datosParaOfertar.materialNecesario" />
+        <label for="descripcionDemanda" class="textoModal">Descripción</label>
+        <input name="descripcionDemanda" type="text" pInputText [(ngModel)]="datosParaOfertar.descripcion" />
+        <label for="duracionDemanda" class="textoModal">Duración de la actividad</label>
+        <input name="duracionDemanda" type="text" pInputText [(ngModel)]="datosParaOfertar.duracion" />
+        <label for="tarifaDemanda" class="textoModal">Tarifa</label>
+        <input name="tarifaDemanda" type="number" pInputText [(ngModel)]="datosParaOfertar.tarifa" />
+        <label for="minimoPlazasDemanda" class="textoModal">Mínimo de plazas</label>
+        <input name="minimoPlazasDemanda" minlength="1" type="number" pInputText
+            [(ngModel)]="datosParaOfertar.minimoPlazas" />
+        <label for="maximoPlazasDemanda" class="textoModal">Máximo de plazas</label>
+        <input name="maximoPlazasDemanda" minlength="1" type="number" pInputText
+            [(ngModel)]="datosParaOfertar.maximoPlazas" />
+
+        <p-button label="Crear" (click)="crearOfertaRapida()" />
+    </div>
+</div>
+<p-toast />

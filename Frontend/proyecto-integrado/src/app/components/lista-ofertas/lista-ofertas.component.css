@@ -1,0 +1,90 @@
+.lista {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.elemento-lista {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1vw;
+    margin: 1vw;
+    border-radius: .3vw;
+    border: 1px solid lightblue;
+}
+
+.elemento-lista-sub {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1vw;
+    align-items: start;
+}
+
+.contenedor {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0;
+}
+
+.datoSecundario{
+    color: gray;
+    font-size: .75vw;
+    display: block;
+}
+
+.precio{
+    float: right;
+}
+
+.contenedorFiltros{
+    display: flex;
+    flex-direction: row;
+}
+
+.bloqueFiltros{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1vw;
+}
+.btnBorrarFecha{
+    width: 8vw;
+    min-width: 8vw;
+    border: none;
+    font-weight: bold;
+    color: white;
+    background-color: #3b82f6;
+    border-radius: .75vw;
+    margin-top: .5vw;
+}
+
+.btnBorrarActividad{
+    width: 10vw;
+    min-width: 10vw;
+    border: none;
+    font-weight: bold;
+    color: white;
+    background-color: #3b82f6;
+    border-radius: .75vw;
+    margin-top: .5vw;
+}
+
+
+.btnFiltros{
+    border: none;
+    font-weight: bold;
+    color: white;
+    background-color: #3b82f6;
+    border-radius: .5vw;
+    height: 3vw;
+    min-height: 3vw;
+    cursor: pointer;
+}
+.filtroNaranja{
+    background-color: #f97316;
+}
+
+.bloqueBoton{
+    justify-content: center;
+}

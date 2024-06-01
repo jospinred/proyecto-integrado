@@ -1,0 +1,270 @@
+<div class="contenedorModificacionDemandaOferta" #contenedorModificacionDemandaOferta>
+    <div class="modalModificacionDemanda" #modalModificacionDemanda>
+        <span class="cerrarModal" (click)="cerrarModal()">X</span>
+        <div class="juntos">
+            <div class="bloque">
+                <label class="textoModal" for="modificarDemandaFecha">Introduce la fecha</label>
+                <input name="modificarDemandaFecha" id="modificarDemandaFecha" type="date" pInputText
+                    [(ngModel)]="datosModificarDemanda.fecha" />
+            </div>
+        </div>
+        <div class="juntos">
+            <div class="bloque">
+                <label class="segundoTextoModal" for="modificarDemandaLocalidad">Introduce la localidad</label>
+                <input name="modificarDemandaLocalidad" id="modificarDemandaLocalidad" type="text" pInputText
+                    [(ngModel)]="datosModificarDemanda.localidad" />
+            </div>
+        </div>
+        <div class="juntos">
+            <div class="bloque2">
+                <label class="segundoTextoModal" for="modificarActividadDemanda">Introduce la actividad</label>
+                <select name="modificarActividadDemanda" class="form-control"
+                    [(ngModel)]="datosModificarDemanda.actividad">
+                    @for (a of actividadesDemanda; track $index) {
+                    <option [value]="a.id">{{a.nombre}}</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="juntos">
+            <div class="bloque">
+                <p-button label="Actualizar" (click)="modificarDemandaUsuario()" />
+            </div>
+        </div>
+    </div>
+    <div class="modalModificacionOferta" #modalModificacionOferta>
+        <span class="cerrarModal" (click)="cerrarModal()">X</span>
+        <div class="juntos textoModal">
+            <div class="bloque">
+                <label class="segundoTextoModal" for="modificarOfertaFecha">Fecha</label>
+                <input name="modificarOfertaFecha" id="modificarOfertaFecha" type="date" pInputText
+                    [(ngModel)]="datosModificarOferta.fecha" />
+            </div>
+            <div class="bloque">
+                <label class="segundoTextoModal" for="modificarOfertaLocalidad">Localidad</label>
+                <input name="modificarOfertaLocalidad" type="text" pInputText
+                    [(ngModel)]="datosModificarOferta.localidad" />
+            </div>
+        </div>
+        <div class="juntos">
+            <div class="bloque">
+                <label class="segundoTextoModal" for="modificarActividadOferta">Actividad</label>
+                <select name="modificarActividadOferta" class="form-control"
+                    [(ngModel)]="datosModificarOferta.actividad">
+                    @for (a of actividadesOferta; track $index) {
+                    <option [value]="a.id">{{a.nombre}}</option>
+                    }
+                </select>
+            </div>
+            <div class="bloque">
+                <label class="segundoTextoModal" for="modificarOfertaDuracion">Duración</label>
+                <input name="modificarOfertaDuracion" type="text" pInputText
+                    [(ngModel)]="datosModificarOferta.duracion" />
+            </div>
+        </div>
+        <div class="juntos">
+            <div class="bloque">
+                <label class="segundoTextoModal" for="modificarOfertaMaterialNecesario">Material necesario</label>
+                <input name="modificarOfertaMaterialNecesario" type="text" pInputText
+                    [(ngModel)]="datosModificarOferta.materialNecesario" />
+            </div>
+            <div class="bloque">
+                <label class="segundoTextoModal" for="modificarOfertaMaterialOfertado">Material ofertado</label>
+                <input name="modificarOfertaMaterialOfertado" type="text" pInputText
+                    [(ngModel)]="datosModificarOferta.materialOfertado" />
+            </div>
+        </div>
+        <div class="juntos">
+            <div class="bloque">
+                <label class="segundoTextoModal" for="modificarOfertaMinimoPlazas">Mínimo de plazas</label>
+                <input name="modificarOfertaMinimoPlazas" min="0" type="number" pInputText
+                    [(ngModel)]="datosModificarOferta.minimoPlazas" />
+            </div>
+            <div class="bloque">
+                <label class="segundoTextoModal" for="modificarOfertaMaximoPlazas">Máximo de plazas</label>
+                <input name="modificarOfertaMaximoPlazas" min="{{datosModificarOferta.participantes}}" type="text"
+                    pInputText [(ngModel)]="datosModificarOferta.maximoPlazas" />
+            </div>
+        </div>
+        <div class="juntos">
+            <div class="bloque">
+                <label class="segundoTextoModal" for="modificarOfertaPreparacion">Preparación necesaria</label>
+                <input name="modificarOfertaPreparacion" type="text" pInputText
+                    [(ngModel)]="datosModificarOferta.preparacionNecesaria" />
+            </div>
+            <div class="bloque">
+                <label class="segundoTextoModal" for="modificarOfertaTarifa">Tarifa</label>
+                <input name="modificarOfertaTarifa" type="number" pInputText
+                    [(ngModel)]="datosModificarOferta.tarifa" />
+            </div>
+        </div>
+        <div class="juntos">
+            <div class="bloque2">
+                <label class="segundoTextoModal" for="modificarOfertaDescripcion">Descripción</label>
+                <input name="modificarOfertaDescripcion" type="text" pInputText
+                    [(ngModel)]="datosModificarOferta.descripcion" />
+            </div>
+        </div>
+        <div class="juntos">
+            <div class="bloque">
+                <p-button label="Actualizar" (click)="modificarOfertaUsuario()" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contenedorPerfil">
+    <p class="usernamePerfil">{{userUsername}}</p>
+    @if(profileOwner){
+        @if(esAdmin){
+            <div class="contenedorAdmin">
+                <p-button type="button" severity="success" label="Panel de administración" (click)="irPanelAdmin()" />
+            </div>
+        }
+        <label class="form-label" for="passActualizar">Actualizar contraseña</label>
+        <input type="password" id="passActualizar" pInputText [(ngModel)]="passModificar" />
+        <p-button type="button" label="Actualizar contraseña" (click)="modificarDatos()" />
+        @if(esConsumidor){
+            <label class="form-label" for="prefActualizar">Añade actividades preferidas</label>
+            <select (change)="addPreferencia($event)" name="prefActualizar" id="prefActualizar" [(ngModel)]="actAddPref">
+            @for (a of actividadesFiltradas; track $index) {
+                <option [value]="a.id">{{a.nombre}}</option>
+            }
+            </select>
+            <div class="listaPreferencias">
+                @for (a of preferenciasModificar; track $index) {
+                    <p-tag class="pref" value="{{a.nombre}} X" (click)="delPreferencia(a.id)" />
+                }
+            </div>
+            <label class="form-label" for="cualificacionActualizar">Añade actividades para las que estas cualificado</label>
+            <select (change)="addCualificacion($event)" name="cualificacionActualizar" id="cualificacionActualizar"
+            [(ngModel)]="actAddCual">
+            @for (a of cualificacionesFiltradas; track $index) {
+                <option [value]="a.id">{{a.nombre}}</option>
+            }
+            </select>
+        }
+        <div class="listaCualificaciones">
+            @for (a of cualificacionesModificar; track $index) {
+            <p-tag class="pref" value="{{a.nombre}} X" (click)="delCualificacion(a.id)" />
+            }
+        </div>
+    <div class="listaOfertasApuntado">
+        <p>Ofertas en las que estas apuntado</p>
+        <p-dataView #dv [value]="listaOfertasApuntado" [rows]="3" [paginator]="true">
+            <ng-template pTemplate="list" let-actividades>
+                <div class="contenedorOfertasUsuario">
+                    @for (item of actividades; track $index) {
+                    <div class="tarjetaPRE">
+                        <div class="lista">
+                            <div class="elemento-lista">
+                                <div class="elemento-lista-sub">
+                                    <div class="primerSpan">
+                                        <span class="datoSecundario">Fecha: {{ item.fecha }}</span>
+                                        <span class="datoSecundario">Localidad: {{ item.localidad }}</span>
+                                        <div>Actividad: {{ item.actividad }}</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span>{{ item.participantes }}/{{ item.maximoPlazas }}</span>
+                                    <span class="precio">{{ item.tarifa + "€" }}</span>
+                                    <div class="botonesPerfil">
+                                        <p-button type="button" label="Darse de baja" severity="warning"
+                                            (click)="desapuntarUsuario(item.id)" />
+                                        <p-button type="button" label="Ver más" (click)="verDatosOferta(item.id)" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+    }
+    <div class="ofertasPerfil">
+        <p>Ofertas del usuario</p>
+        <p-dataView #dv [value]="listaOfertasUsuario" [rows]="3" [paginator]="true">
+            <ng-template pTemplate="list" let-actividades>
+                <div class="contenedorOfertasUsuario">
+                    @for (item of actividades; track $index) {
+                    <div class="tarjetaPRE">
+                        <div class="lista">
+                            <div class="elemento-lista">
+                                <div class="elemento-lista-sub">
+                                    <div class="primerSpan">
+                                        <span class="datoSecundario">Fecha: {{ item.fecha }}</span>
+                                        <span class="datoSecundario">Localidad: {{ item.localidad }}</span>
+                                        <div>Actividad: {{ item.actividad }}</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span>{{ item.participantes }}/{{ item.maximoPlazas }}</span>
+                                    <span class="precio">{{ item.tarifa + "€" }}</span>
+                                    <div class="botonesPerfil">
+                                        @if(profileOwner){
+                                        <p-button type="button" label="Modificar" severity="warning"
+                                            (click)="abrirModalModificarOferta(item)" />
+                                        <p-button type="button" label="Borrar" severity="warning"
+                                            (click)="borrarOfertaUsuario(item.id)" />
+                                        }@else{
+                                        <a routerLink="/datos-oferta/{{ item.id }}" class="p-button font-bold"
+                                            style="text-decoration: none;">
+                                            Ver más
+                                        </a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+    <div class="demandasPerfil">
+        <p>Demandas del usuario</p>
+        <p-dataView #dv [value]="listaDemandasUsuario" [rows]="3" [paginator]="true">
+            <ng-template pTemplate="list" let-actividades>
+                <div class="contenedorOfertasUsuario">
+                    @for (item of actividades; track $index) {
+                    <div class="tarjetaPRE">
+                        <div class="lista">
+                            <div class="elemento-lista">
+                                <div class="elemento-lista-sub">
+                                    <div class="primerSpan">
+                                        <span class="datoSecundario">Fecha: {{ item.fecha }}</span>
+                                        <span class="datoSecundario">Localidad: {{ item.localidad }}</span>
+                                        <div>Actividad: {{ item.actividad }}</div>
+                                    </div>
+                                </div>
+                                <div class="botonesPerfil">
+                                    @if(profileOwner){
+                                    <p-button type="button" label="Modificar" severity="warning"
+                                        (click)="abrirModalModificarDemanda(item)" />
+                                    <p-button type="button" label="Borrar" severity="warning"
+                                        (click)="borrarDemandaUsuario(item.id)" />
+                                    }@else{
+                                    <a routerLink="/datos-demanda/{{ item.id }}" class="p-button font-bold"
+                                        style="text-decoration: none;">
+                                        Ver más
+                                    </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+    @if(profileOwner){
+    <div class="botonPeligro">
+        <p>¡PELIGRO!</p>
+        <p-button label="Borrar cuenta" severity="danger" (click)="borrarCuentaUsuario()" />
+    </div>
+    }
+</div>
+<p-toast />

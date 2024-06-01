@@ -1,0 +1,10 @@
+<p-menubar [model]="items" />
+<div class="contenedor" #modalBackground>
+    <div class="modalPass" #modal>
+        <span class="cerrarModal" (click)="cerrarModal()">X</span>
+        <p class="textoModal">Introduce tu contraseña</p>
+        <input type="password" pInputText [(ngModel)]="userPass" />
+        <p-button label="Registrar" (click)="registroRapido()" />
+    </div>
+</div>
+<p-toast />

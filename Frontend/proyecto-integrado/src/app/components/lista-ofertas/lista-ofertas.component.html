@@ -1,0 +1,59 @@
+<span><b>Filtros</b></span>
+<div class="contenedorFiltros">
+    <div class="bloqueFiltros">
+        <label for="filtroFechaDemanda">Fecha</label>
+        <input class="form-control" id="filtroFechaDemanda" type="date" name="filtroFechaDemanda" [(ngModel)]="filtro.fecha" />
+        <button class="btnBorrarFecha" type="button" (click)="borrarFechaInput()">Borrar fecha</button>
+    </div>
+    <div class="bloqueFiltros">
+        <label for="filtroLocalidadDemanda">Localidad</label>
+        <input class="form-control" id="filtroLocalidadDemanda" type="text" name="filtroLocalidadDemanda"
+            [(ngModel)]="filtro.localidad" />
+    </div>
+    <div class="bloqueFiltros">
+        <label for="filtroActividadDemanda">Actividad</label>
+        <select name="filtroActividadDemanda" id="filtroActividadDemanda" class="form-control"
+            [(ngModel)]="filtro.actividad">
+            @for (a of actividades; track $index) {
+            <option [value]="a.nombre">{{a.nombre}}</option>
+            }
+        </select>
+        <button class="btnBorrarActividad" type="button" (click)="borrarActividadInput()">Borrar actividad</button>
+    </div>
+    <div class="bloqueFiltros bloqueBoton">
+        <button class="btnFiltros" type="button" (click)="filtroActividades()">Aplicar filtros</button>
+    </div>
+    <div class="bloqueFiltros bloqueBoton">
+        <button class="btnFiltros filtroNaranja" type="button" (click)="borrarFiltros()">Borrar filtros</button>
+    </div>
+</div>
+<p-divider />
+<p-dataView #dv [value]="listaActividadesFiltrada" [rows]="10" [paginator]="true">
+    <ng-template pTemplate="list" let-actividades>
+        <div class="contenedor">
+            <div class="col-12" *ngFor="let item of actividades; let first = first" class="col-12">
+                <div class="lista">
+                    <div class="elemento-lista">
+                        <div class="elemento-lista-sub">
+                            <div>
+                                <span class="datoSecundario">{{ item.fecha }}</span>
+                                <span class="datoSecundario">{{ item.localidad }}</span>
+                                <div>{{ item.actividad }}</div>
+                            </div>
+                        </div>
+                        <div class="flex flex-column md:align-items-end gap-5">
+                            <span>{{ item.participantes }}/{{ item.maximoPlazas }}</span>
+                            <span class="precio">{{ item.tarifa + "€" }}</span>
+                            <div style="margin-top: .5vw;">
+                                <a routerLink="/datos-oferta/{{ item.id }}" class="p-button font-bold" style="text-decoration: none;">
+                                    Ver más
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p-divider />
+            </div>
+        </div>
+    </ng-template>
+</p-dataView>

@@ -1,0 +1,103 @@
+<section>
+    <div class="container">
+        <div class="user signinBx">
+            <div class="formBx">
+                <form #userLogin="ngForm" (ngSubmit)="logearUsuario(userLogin.value)">
+                    <h2>Iniciar sesión</h2>
+                    <div class="contenedorInput">
+                        <input class="form-control" type="text" required name="username" #username="ngModel" size="10"
+                            [(ngModel)]="usuarioLogin.username" placeholder="Usuario" />
+                        <div [hidden]="username.valid || username.pristine" class="error-form">
+                            El usuario es obligatorio
+                        </div>
+                    </div>
+                    <div class="contenedorInput">
+                        <input class="form-control" type="password" required name="password" #password="ngModel"
+                            size="10" [(ngModel)]="usuarioLogin.password" placeholder="Constraseña" />
+                        <div [hidden]="password.valid || password.pristine" class="error-form">
+                            La contraseña es obligatorio
+                        </div>
+                    </div>
+                    <p-button type="submit" label="Login" [disabled]="!userLogin.valid" />
+                    <p class="signup">
+                        No tienes cuenta ?
+                        <span (click)="toggleForm()">Registrarse.</span>
+                    </p>
+                </form>
+            </div>
+        </div>
+        <div class="user signupBx">
+            <div class="formBx">
+                <form #userRegister="ngForm" (ngSubmit)="registrarUsuario(userRegister.value)">
+                    <h2>Crear una cuenta</h2>
+                    <div class="formParalelo">
+                        <div class="contenedorInput">
+                            <input class="form-control" type="text" required name="usernameRegister"
+                                #usernameRegister="ngModel" size="10" [(ngModel)]="usuarioRegister.username"
+                                placeholder="Usuario" />
+                            <div [hidden]="usernameRegister.valid || usernameRegister.pristine" class="error-form">
+                                El usuario es obligatorio
+                            </div>
+                        </div>
+                        <div class="contenedorInput">
+                            <input type="email" required name="email" #email="ngModel" size="10"
+                                [(ngModel)]="usuarioRegister.email" placeholder="Email" style="width: 8.75vw;" />
+                            <div [hidden]="email.valid || email.pristine" class="error-form">
+                                El email es obligatorio
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contenedorInput">
+                        <input class="form-control" type="password" required name="passwordRegister"
+                            #passwordRegister="ngModel" size="10" [(ngModel)]="usuarioRegister.password"
+                            placeholder="Contraseña" />
+                        <div [hidden]="passwordRegister.valid || passwordRegister.pristine" class="error-form">
+                            La contraseña es obligatorio
+                        </div>
+                    </div>
+                    <div class="contenedorInput">
+                        <input class="form-control" type="text" required name="nombre" #nombre="ngModel" size="10"
+                            [(ngModel)]="usuarioRegister.nombre" placeholder="Nombre" />
+                        <div [hidden]="nombre.valid || nombre.pristine" class="error-form">
+                            El nombre es obligatorio
+                        </div>
+                    </div>
+                    <div class="contenedorInput">
+                        <input class="form-control" type="text" required name="apellidos" #apellidos="ngModel" size="10"
+                            [(ngModel)]="usuarioRegister.apellidos" placeholder="Apellidos" />
+                        <div [hidden]="apellidos.valid || apellidos.pristine" class="error-form">
+                            Los apellidos son obligatorio
+                        </div>
+                    </div>
+                    <div class="formParalelo">
+                        <div class="contenedorInput">
+                            <input class="form-control" type="tel" required name="telefono" #telefono="ngModel" size="10"
+                                maxlength="9" [(ngModel)]="usuarioRegister.telefono" placeholder="Telefono" />
+                            <div [hidden]="telefono.valid || telefono.pristine" class="error-form">
+                                El telefono son obligatorio
+                            </div>
+                        </div>
+                        <div class="contenedorInput">
+                            <input class="form-control" type="date" required name="fechaNacimiento"
+                                #fechaNacimiento="ngModel" size="10" [(ngModel)]="usuarioRegister.fechaNacimiento" />
+                        </div>
+                    </div>
+                    <div class="contenedorInput">
+                        <p-selectButton required name="sexo" [options]="sexoOpciones" #sexo="ngModel"
+                            [(ngModel)]="usuarioRegister.sexo" />
+                    </div>
+                    <div class="contenedorInput">
+                        <p-selectButton required name="rol" [options]="rolOpciones" #rol="ngModel"
+                            [(ngModel)]="usuarioRegister.rol" />
+                    </div>
+                    <p-button type="submit" label="Registrar" [disabled]="!userRegister.valid" />
+                    <p class="signup">
+                        Ya tienes una cuenta ?
+                        <span (click)="toggleForm()">Inicia sesión.</span>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<p-toast />

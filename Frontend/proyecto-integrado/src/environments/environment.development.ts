@@ -1,0 +1,22 @@
+export const environment = {
+    production: false,
+    apiUrlUsuarioPorId: 'http://localhost:8080/api/usuario/',
+    apiUrlUsuarioActualizar: 'http://localhost:8080/api/usuario',
+    apiUrlRegistrarUsuarios: 'http://localhost:8080/api/usuario',
+    apiUrlLogearUsuarios: 'http://localhost:8080/api/usuario/login',
+    apiUrlValidarToken: 'http://localhost:8080/api/usuario/validarJWT',
+    apiUrlListaOfertas: 'http://localhost:8080/api/ofertas',
+    apiUrlListaDemandas: 'http://localhost:8080/api/demandas',
+    apiUrlListaActividades: 'http://localhost:8080/api/actividades',
+    apiUrlCrearOferta: 'http://localhost:8080/api/oferta',
+    apiUrlOfertaPorId: 'http://localhost:8080/api/oferta/',
+    apiUrlAddUserOferta: 'http://localhost:8080/api/oferta/apuntarse/',
+    apiUrlDelUserOferta: 'http://localhost:8080/api/oferta/desapuntarse/',
+    apiUrlCrearDemanda: 'http://localhost:8080/api/demanda',
+    apiUrlActividadPorNombre: 'http://localhost:8080/api/actividadN/',
+    apiUrlDemandaPorId: 'http://localhost:8080/api/demanda/',
+    apiUrlPreferenciasPorId: 'http://localhost:8080/api/usuarioPreferencias/',
+    apiUrlCualificacionPorId: 'http://localhost:8080/api/usuarioCualificaciones/',
+    apiUrlBorrarPorUsername: 'http://localhost:8080/api/usuario-username/',
+    apiUrlListaOfertasApuntado: "http://localhost:8080/api/ofertasapuntado/"
+};

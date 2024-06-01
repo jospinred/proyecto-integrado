@@ -1,0 +1,18 @@
+<div class="banner-inicial"></div>
+@if(noLogeado){
+    <div class="texto-banner">
+        <p>¡Bienvenido a nuestra emocionante comunidad de actividades deportivas!</p>
+        <p>Nuestra plataforma está diseñada para conectar a personas con intereses similares y proporcionarles acceso a una amplia gama de actividades emocionantes, desde clases grupales hasta eventos deportivos, entrenamientos personalizados y mucho más.</p>
+        <p-button label="Iniciar sesión" routerLink="/login-register"/>
+    </div>
+} @else {
+    <div class="contenedorIndexActividades">
+        @for (noticia of listaNoticias; track $index) {
+            <p class="tituloNoticia">{{noticia.titulo}}</p>
+            <p>{{noticia.cuerpo}} <a target="_blank" href="{{noticia.enlace}}">Ver más</a></p>
+            @if($index != listaNoticias.length-1){
+                <p-divider/>
+            }
+        }
+    </div>
+}

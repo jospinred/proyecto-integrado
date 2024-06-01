@@ -1,0 +1,27 @@
+<p>Actividad: {{ofertaCompleta?.actividad}}</p>
+<p>Descripcion: {{ofertaCompleta?.descripcion}}</p>
+<p>Duracion: {{ofertaCompleta?.duracion}}</p>
+<p>Fecha: {{ofertaCompleta?.fecha}}</p>
+<p>Localidad: {{ofertaCompleta?.localidad}}</p>
+<p>Plazas máximas: {{ofertaCompleta?.maximoPlazas}}</p>
+<p>Plazas mínimas: {{ofertaCompleta?.minimoPlazas}}</p>
+<p>Participantes: {{ofertaCompleta?.participantes}}</p>
+<p>Material ofertado: {{ofertaCompleta?.materialOfertado}}</p>
+<p>Material necesario: {{ofertaCompleta?.materialNecesario}}</p>
+<p>Preparacion necesaria: {{ofertaCompleta?.preparacionNecesaria}}</p>
+<p>Tarifa: {{ofertaCompleta?.tarifa}}€</p>
+<p>Creador de la oferta: <a routerLink="/perfil/{{usuarioCreadorOferta?.id}}">{{ofertaCompleta?.creadorOferta}}</a></p>
+@if(usuarioCreadorOferta?.id!=usuarioId){
+    @if(!esConsumidor){
+        <p-button type="button" label="No eres consumidor" [disabled]="true" />
+    } @else {
+        @if(estaApuntado){
+            <p-button type="button" label="Ya estas apuntado" [disabled]="true" />
+        } @else {
+            <p-button type="button" label="Apuntarse" (click)="apuntarseOferta()"/>
+        }
+    }
+} @else {
+    <p-button type="button" label="Oferta publicada por ti" [severity]="'danger'" [disabled]="true" />
+}
+<p-toast />
