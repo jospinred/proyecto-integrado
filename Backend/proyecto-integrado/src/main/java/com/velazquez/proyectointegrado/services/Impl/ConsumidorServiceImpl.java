@@ -65,13 +65,14 @@ public class ConsumidorServiceImpl implements ConsumidorService {
         return consumidorRepo.selectById(id);
     }
 
+    /*
     @Override
     @Transactional
     public Consumidor apuntarOferta(Consumidor consumidor, Oferta oferta) {
         consumidor.setActividadesApuntado(oferta);
         return consumidorRepo.save(consumidor);
     }
-
+*/
     @Override
     public Boolean comprobarApuntadoOferta(Consumidor usuario, Oferta oferta) {
         Set<Oferta> actividadesApuntado;

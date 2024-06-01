@@ -1,17 +1,15 @@
-1. Boton disabled de ofertas en las que estes apuntado
-2. Perfil (borrar su propia cuenta,poder modificar actividades ofertadas
-3. Cambiar inicio si esta logeado
+1. notificaciones(bandeja de notificaciones)
+
+3. EXTRA Meter un boton que se vea si esta logeado, que filtre por las actividades preferidas del consumidor
+4. EXTRA Solucionar bug de 2 veces el mismo boton con diferente informacion
+
+5. Http interceptor
 
 
-6.Filtro para la lista de actividades y demandas
-4. Añadir preferencias consumidores
-5. Documentacion
-7. Panel de administracion
+6. CSS de todo
+7. Documentacion
 
 
-Extra: 
-5.notificaciones
-8.CSS de todo
-9. terminos y condiciones
-
-BORRAR NODE_MODULES DE GITHUB
+FINAL
+-----
+DESPLEGAR

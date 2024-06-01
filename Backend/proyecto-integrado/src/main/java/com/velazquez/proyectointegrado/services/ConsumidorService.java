@@ -15,6 +15,6 @@ public interface ConsumidorService {
     Consumidor updateConsumidor(Consumidor usuario);
     void deleteConsumidor(Long id);
     int selectById(Long id);
-    Consumidor apuntarOferta(Consumidor usuario, Oferta oferta);
+    //Consumidor apuntarOferta(Consumidor usuario, Oferta oferta);
     Boolean comprobarApuntadoOferta(Consumidor usuario, Oferta oferta);
 }

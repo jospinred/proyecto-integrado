@@ -1,5 +1,6 @@
 package com.velazquez.proyectointegrado.api;
 
+import com.velazquez.proyectointegrado.api.dto.DemandaDTO;
 import com.velazquez.proyectointegrado.api.dto.OfertaDTO;
 import com.velazquez.proyectointegrado.mappers.Mapper;
 import com.velazquez.proyectointegrado.model.*;
@@ -135,15 +136,36 @@ public class OfertaAPIController {
         }
         Oferta oferta = ofertaOpcional.get();
         Consumidor consumidor = consumidorOpcional.get();
-
         if(consumidorService.comprobarApuntadoOferta(consumidor,oferta)){
             mapa.put("Resultado", "El usuario ya se encuentra apuntado a esta actividad");
             return new ResponseEntity<>(mapa, HttpStatus.OK);
         }
 
         oferta.setParticipantes(oferta.getParticipantes()+1);
+        consumidor.setActividadesApuntado(oferta);
+        consumidorService.updateConsumidor(consumidor);
+        ofertaService.updateOferta(oferta);
+        mapa.put("Resultado", "OK");
+        return new ResponseEntity<>(mapa, HttpStatus.OK);
+    }
 
-        consumidorService.apuntarOferta(consumidor,oferta);
+    // Darse de baja de una oferta
+    @PostMapping(path = "/api/oferta/desapuntarse/{idOferta}/{userUsuario}")
+    public ResponseEntity<Object> desapuntarseOferta(@PathVariable Long idOferta, @PathVariable String userUsuario) {
+        logger.info("Usuario con id: "+userUsuario+ " se desapunta a oferta con id: " + idOferta );
+        HashMap<String,String> mapa = new HashMap<>();
+        Optional<Oferta> ofertaOpcional = ofertaService.findOfertaById(idOferta);
+        Optional<Consumidor> consumidorOpcional = consumidorService.findConsumidorByUsername(userUsuario);
+        if (ofertaOpcional.isEmpty() || consumidorOpcional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Oferta oferta = ofertaOpcional.get();
+        Consumidor consumidor = consumidorOpcional.get();
+        if(consumidorService.comprobarApuntadoOferta(consumidor,oferta)){
+            oferta.setParticipantes(oferta.getParticipantes()-1);
+            consumidor.delActividadesApuntado(oferta);
+        }
+        consumidorService.updateConsumidor(consumidor);
         ofertaService.updateOferta(oferta);
         mapa.put("Resultado", "OK");
         return new ResponseEntity<>(mapa, HttpStatus.OK);
@@ -157,5 +179,28 @@ public class OfertaAPIController {
         ofertaService.deleteOferta(id);
         mapa.put("Resultado", "Oferta borrada correctamente");
         return new ResponseEntity<>(mapa, HttpStatus.OK);
+    }
+
+    // Actualizar una oferta
+    @PutMapping(path = "/api/oferta")
+    public ResponseEntity<Object> updateOferta(@RequestBody OfertaDTO ofertaDTO) {
+        logger.info("Update oferta by id: " + ofertaDTO.getId());
+        Optional<Oferta> ofertaOptionalBD = ofertaService.findOfertaById(ofertaDTO.getId());
+        Oferta ofertaBD = ofertaOptionalBD.get();
+        ofertaBD.setDescripcion(ofertaDTO.getDescripcion());
+        ofertaBD.setDuracion(ofertaDTO.getDuracion());
+        ofertaBD.setFecha(ofertaDTO.getFecha());
+        ofertaBD.setLocalidad(ofertaDTO.getLocalidad());
+        Long idActividad = Long.parseLong(ofertaDTO.getActividad());
+        Optional<Actividad> actividad = actividadService.findActividadById(idActividad);
+        ofertaBD.setActividad(actividad.get());
+        ofertaBD.setMaterialNecesario(ofertaDTO.getMaterialNecesario());
+        ofertaBD.setMaterialOfertado(ofertaDTO.getMaterialOfertado());
+        ofertaBD.setMinimoPlazas(ofertaDTO.getMinimoPlazas());
+        ofertaBD.setMaximoPlazas(ofertaDTO.getMaximoPlazas());
+        ofertaBD.setPreparacionNecesaria(ofertaDTO.getPreparacionNecesaria());
+        ofertaBD.setTarifa(ofertaDTO.getTarifa());
+        ofertaService.updateOferta(ofertaBD);
+        return new ResponseEntity<>(ofertaMapper.mapTo(ofertaBD), HttpStatus.OK);
     }
 }

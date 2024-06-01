@@ -23,4 +23,20 @@ public class Ofertante extends Usuario{
     @OneToMany(mappedBy = "creadorOferta", cascade = CascadeType.ALL)
     @JsonBackReference
     private Set<Oferta> ofertas;
+
+    public Set<Actividad> getActividadesCualificado() {
+        return actividadesCualificado;
+    }
+
+    public void setActividadCualificado(Actividad actividad) {
+        this.actividadesCualificado.add(actividad);
+    }
+
+    public void delActividadCualificado(Actividad actividad) {
+        this.actividadesCualificado.remove(actividad);
+    }
+
+    public void setActividadesCualificado(Set<Actividad> actividadesCualificado) {
+        this.actividadesCualificado = actividadesCualificado;
+    }
 }

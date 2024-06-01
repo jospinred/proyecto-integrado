@@ -36,12 +36,19 @@ public class Consumidor extends Usuario{
         this.actividadesPreferencia.add(actividadPreferencia);
     }
 
+    public void delActividadesPreferencia(Actividad preferencia){
+        this.actividadesPreferencia.remove(preferencia);
+    }
+
     public Set<Oferta> getActividadesApuntado() {
         return actividadesApuntado;
     }
 
     public void setActividadesApuntado(Oferta actividadApuntado) {
         this.actividadesApuntado.add(actividadApuntado);
+    }
+    public void delActividadesApuntado(Oferta actividadApuntado) {
+        this.actividadesApuntado.remove(actividadApuntado);
     }
 
     public Set<Demanda> getDemandas() {
