@@ -18,7 +18,11 @@
         @if(estaApuntado){
             <p-button type="button" label="Ya estas apuntado" [disabled]="true" />
         } @else {
-            <p-button type="button" label="Apuntarse" (click)="apuntarseOferta()"/>
+            @if(ofertaCompleta?.participantes == ofertaCompleta?.maximoPlazas){
+                <p-button type="button" label="La oferta esta completa" [disabled]="true" />
+            } @else {
+                <p-button type="button" label="Apuntarse" (click)="apuntarseOferta()"/>
+            }
         }
     }
 } @else {
