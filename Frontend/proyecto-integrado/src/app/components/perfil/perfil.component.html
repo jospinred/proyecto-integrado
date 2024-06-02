@@ -136,19 +136,21 @@
                     <p-tag class="pref" value="{{a.nombre}} X" (click)="delPreferencia(a.id)" />
                 }
             </div>
+        }
+        @if(esOfertante){
             <label class="form-label" for="cualificacionActualizar">Añade actividades para las que estas cualificado</label>
             <select (change)="addCualificacion($event)" name="cualificacionActualizar" id="cualificacionActualizar"
             [(ngModel)]="actAddCual">
-            @for (a of cualificacionesFiltradas; track $index) {
-                <option [value]="a.id">{{a.nombre}}</option>
-            }
+                @for (a of cualificacionesFiltradas; track $index) {
+                    <option [value]="a.id">{{a.nombre}}</option>
+                }
             </select>
+            <div class="listaCualificaciones">
+                @for (a of cualificacionesModificar; track $index) {
+                <p-tag class="pref" value="{{a.nombre}} X" (click)="delCualificacion(a.id)" />
+                }
+            </div>
         }
-        <div class="listaCualificaciones">
-            @for (a of cualificacionesModificar; track $index) {
-            <p-tag class="pref" value="{{a.nombre}} X" (click)="delCualificacion(a.id)" />
-            }
-        </div>
     <div class="listaOfertasApuntado">
         <p>Ofertas en las que estas apuntado</p>
         <p-dataView #dv [value]="listaOfertasApuntado" [rows]="3" [paginator]="true">
@@ -182,6 +184,13 @@
             </ng-template>
         </p-dataView>
     </div>
+    } @else {
+        <p>Actividades para las que este usuario esta cualificado</p>
+        <div class="listaCualificaciones">
+            @for (a of cualificacionesModificar; track $index) {
+            <p-tag class="pref" value="{{a.nombre}}" />
+            }
+        </div>
     }
     <div class="ofertasPerfil">
         <p>Ofertas del usuario</p>

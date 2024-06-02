@@ -41,11 +41,8 @@ public class ActividadAPIController {
     public ResponseEntity<List<ActividadDTO>> getActividades() {
         logger.info("Get actividades");
         List<Actividad> actividades = actividadService.getActividades();
-        System.out.println("Actividades normales: "+actividades);
         List<ActividadDTO> actividadesDTO = new ArrayList<>();
         actividades.forEach(actividad -> actividadesDTO.add(actividadMapper.mapTo(actividad)));
-        System.out.println("Actividades dto: "+actividadesDTO);
-        System.out.println("Actividades despues filtro: "+ actividadesDTO);
         return new ResponseEntity<>(actividadesDTO, HttpStatus.OK);
     }
 

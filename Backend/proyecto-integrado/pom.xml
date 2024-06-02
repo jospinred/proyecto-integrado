@@ -11,7 +11,7 @@
     <groupId>com.velazquez</groupId>
     <artifactId>proyecto-integrado</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>proyecto-integrado</name>
     <description>proyecto-integrado</description>
     <properties>

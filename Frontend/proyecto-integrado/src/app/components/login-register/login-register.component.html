@@ -55,24 +55,26 @@
                             La contraseña es obligatorio
                         </div>
                     </div>
-                    <div class="contenedorInput">
-                        <input class="form-control" type="text" required name="nombre" #nombre="ngModel" size="10"
-                            [(ngModel)]="usuarioRegister.nombre" placeholder="Nombre" />
-                        <div [hidden]="nombre.valid || nombre.pristine" class="error-form">
-                            El nombre es obligatorio
+                    <div class="formParalelo">
+                        <div class="contenedorInput">
+                            <input class="form-control" type="text" required name="nombre" #nombre="ngModel" size="10"
+                                [(ngModel)]="usuarioRegister.nombre" placeholder="Nombre" />
+                            <div [hidden]="nombre.valid || nombre.pristine" class="error-form">
+                                El nombre es obligatorio
+                            </div>
                         </div>
-                    </div>
-                    <div class="contenedorInput">
-                        <input class="form-control" type="text" required name="apellidos" #apellidos="ngModel" size="10"
-                            [(ngModel)]="usuarioRegister.apellidos" placeholder="Apellidos" />
-                        <div [hidden]="apellidos.valid || apellidos.pristine" class="error-form">
-                            Los apellidos son obligatorio
+                        <div class="contenedorInput">
+                            <input class="form-control" type="text" required name="apellidos" #apellidos="ngModel"
+                                size="10" [(ngModel)]="usuarioRegister.apellidos" placeholder="Apellidos" />
+                            <div [hidden]="apellidos.valid || apellidos.pristine" class="error-form">
+                                Los apellidos son obligatorio
+                            </div>
                         </div>
                     </div>
                     <div class="formParalelo">
                         <div class="contenedorInput">
-                            <input class="form-control" type="tel" required name="telefono" #telefono="ngModel" size="10"
-                                maxlength="9" [(ngModel)]="usuarioRegister.telefono" placeholder="Telefono" />
+                            <input class="form-control" type="tel" required name="telefono" #telefono="ngModel"
+                                size="10" maxlength="9" [(ngModel)]="usuarioRegister.telefono" placeholder="Telefono" />
                             <div [hidden]="telefono.valid || telefono.pristine" class="error-form">
                                 El telefono son obligatorio
                             </div>
@@ -81,10 +83,6 @@
                             <input class="form-control" type="date" required name="fechaNacimiento"
                                 #fechaNacimiento="ngModel" size="10" [(ngModel)]="usuarioRegister.fechaNacimiento" />
                         </div>
-                    </div>
-                    <div class="contenedorInput">
-                        <p-selectButton required name="sexo" [options]="sexoOpciones" #sexo="ngModel"
-                            [(ngModel)]="usuarioRegister.sexo" />
                     </div>
                     <div class="contenedorInput">
                         <p-selectButton required name="rol" [options]="rolOpciones" #rol="ngModel"

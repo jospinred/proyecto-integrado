@@ -39,14 +39,10 @@ export class LoginRegisterComponent {
     nombre: "",
     apellidos: "",
     fechaNacimiento: "",
-    sexo: "",
+    sexo: "NC",
     telefono: "",
     rol: ""
   }
-  sexoOpciones: any[] = [
-    { label: 'Masculino', value: "M" },
-    { label: 'Femenino', value: "F" }
-  ];
   rolOpciones: any[] = [
     { label: 'Consumidor', value: "consumidor" },
     { label: 'Ofertante', value: "ofertante" }
@@ -81,6 +77,7 @@ export class LoginRegisterComponent {
   }
 
   registrarUsuario(usuario: any) {
+    this.messageService.add({ severity: 'info', summary: 'Registrando', detail: 'Se está registrando al usuario.' });
     this.peticion.registrar(this.usuarioRegister).subscribe(datos => {
       this.messageService.add({ severity: 'success', summary: 'Usuario registrado', detail: 'Se ha registrado al usuario correctamente.' });
       setTimeout(() => {

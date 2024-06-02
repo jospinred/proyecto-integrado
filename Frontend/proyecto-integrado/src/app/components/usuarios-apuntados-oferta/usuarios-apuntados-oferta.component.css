@@ -12,3 +12,8 @@
     display: flex;
     flex-direction: column;
 }
+
+.botonVolverUsuariosApuntados{
+    display: inline-block;
+    margin-top: 1vw;
+}

@@ -113,9 +113,6 @@ public class UsuarioAPIController {
         int consumidor = consumidorService.selectById(usuario.getId());
         int ofertante = ofertanteService.selectById(usuario.getId());
         int admin = adminService.selectById(usuario.getId());
-        System.out.println("Es consumidor? " + consumidor);
-        System.out.println("Es ofertante? " + ofertante);
-        System.out.println("Es admin? " + admin);
         if (consumidor > 0) {
             permisos += 1;
         }

@@ -23,6 +23,7 @@ export class PerfilComponent {
   userUsername?: string;
   passModificar?: any = "";
   esConsumidor?: boolean;
+  esOfertante?: boolean;
   esAdmin?: boolean;
   profileOwner: boolean = false;
   actAddPref?: any;
@@ -68,6 +69,9 @@ export class PerfilComponent {
     if (permisos == "1" || permisos == "4" || permisos == "6" || permisos == "9") {
       this.esConsumidor = true;
     }
+    if(permisos == "3" || permisos == "4" || permisos == "8" || permisos == "9"){
+      this.esOfertante = true;
+    }
     if (permisos == "5" || permisos == "6" || permisos == "8" || permisos == "9") {
       this.esAdmin = true;
     }
@@ -83,8 +87,6 @@ export class PerfilComponent {
   }
 
   cargarDatos() {
-    console.log("SI");
-    
     this.peticion.obtenerUsuarioPorId(this.rutaActiva.snapshot.params["id"]).subscribe({
       next: datos => {
         this.userUsername = datos.username;
@@ -114,7 +116,7 @@ export class PerfilComponent {
         this.actAddPref = "";
       }
     });
-    this.peticion.listarCualificacionesConsumidor(this.idUsuario).subscribe({
+    this.peticion.listarCualificacionesConsumidor(this.rutaActiva.snapshot.params["id"]).subscribe({
       next: datos => {
         this.cualificacionesModificar = datos;
         this.cualificacionesModificar.sort((a, b) => a.id - b.id);

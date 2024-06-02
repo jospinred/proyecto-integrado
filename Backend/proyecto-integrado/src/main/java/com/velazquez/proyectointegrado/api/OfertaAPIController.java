@@ -45,9 +45,7 @@ public class OfertaAPIController {
             String idActividadString = ofertaDTO.getActividad();
             Optional<Actividad> actividadOpcional = actividadService.findActividadById(Long.parseLong(idActividadString));
             Actividad actividad = actividadOpcional.get();
-            System.out.println("creador de la oferta: "+ofertaDTO.getCreadorOferta());//AQUI
             Optional<Ofertante> ofertanteOpcional = ofertanteService.findOfertanteByUsername(ofertaDTO.getCreadorOferta());
-            System.out.println("ofertanteOpcional"+ofertanteOpcional);
             Ofertante ofertante = ofertanteOpcional.get();
             oferta.setCreadorOferta(ofertante);
             oferta.setParticipantes(0);
@@ -130,8 +128,6 @@ public class OfertaAPIController {
         Optional<Oferta> ofertaOpcional = ofertaService.findOfertaById(idOferta);
         Optional<Consumidor> consumidorOpcional = consumidorService.findConsumidorByUsername(userUsuario);
         if (ofertaOpcional.isEmpty() || consumidorOpcional.isEmpty()) {
-            System.out.println(userUsuario);
-            System.out.println(consumidorOpcional);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         Oferta oferta = ofertaOpcional.get();
