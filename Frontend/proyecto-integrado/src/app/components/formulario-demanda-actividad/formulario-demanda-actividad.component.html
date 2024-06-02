@@ -1,30 +1,32 @@
-<form #demandaCrear="ngForm" (ngSubmit)="crearDemanda(demandaCrear.value)">
-    <h2>Demanda una actividad</h2>
-
-    <div class="contenedorInput">
-        <label class="form-label" for="actividadDemanda">Actividad</label>
-        <select name="actividadDemanda" id="actividadDemanda" class="form-control" #actividadDemanda="ngModel"
-            [(ngModel)]="datosDemanda.actividad">
-            @for (a of actividadesDemanda; track $index) {
-            <option [value]="a.id">{{a.nombre}}</option>
-            }
-        </select>
-    </div>
-
-    <div class="contenedorInput">
-        <label class="form-label" for="fechaDemanda">Fecha</label>
-        <input class="form-control" id="fechaDemanda" type="date" required name="fechaDemanda" #fechaDemanda="ngModel"
-            size="10" [(ngModel)]="datosDemanda.fecha" />
-    </div>
-
-    <div class="contenedorInput">
-        <label class="form-label" for="localidadDemanda">Localidad</label>
-        <input class="form-control" id="localidadDemanda" type="text" required name="localidadDemanda" #localidadDemanda="ngModel" size="10"
-            [(ngModel)]="datosDemanda.localidad" />
-        <div [hidden]="localidadDemanda.valid || localidadDemanda.pristine" class="error-form">
-            El localidad es obligatorio
+<div class="contenedorCrearNuevaDemanda">
+    <form #demandaCrear="ngForm" (ngSubmit)="crearDemanda(demandaCrear.value)">
+        <h2>Demanda una actividad</h2>
+    
+        <div class="contenedorInput">
+            <label class="form-label" for="actividadDemanda">Actividad</label>
+            <select name="actividadDemanda" id="actividadDemanda" class="form-control" #actividadDemanda="ngModel"
+                [(ngModel)]="datosDemanda.actividad">
+                @for (a of actividadesDemanda; track $index) {
+                <option [value]="a.id">{{a.nombre}}</option>
+                }
+            </select>
         </div>
-    </div>
-    <p-button type="submit" label="Crear demanda" [disabled]="demandaCrear.invalid" />
-</form>
+    
+        <div class="contenedorInput">
+            <label class="form-label" for="fechaDemanda">Fecha</label>
+            <input class="form-control" id="fechaDemanda" type="date" required name="fechaDemanda" #fechaDemanda="ngModel"
+                size="10" [(ngModel)]="datosDemanda.fecha" />
+        </div>
+    
+        <div class="contenedorInput">
+            <label class="form-label" for="localidadDemanda">Localidad</label>
+            <input class="form-control" id="localidadDemanda" type="text" required name="localidadDemanda" #localidadDemanda="ngModel" size="10"
+                [(ngModel)]="datosDemanda.localidad" />
+            <div [hidden]="localidadDemanda.valid || localidadDemanda.pristine" class="error-form">
+                El localidad es obligatorio
+            </div>
+        </div>
+        <p-button type="submit" label="Crear demanda" [disabled]="demandaCrear.invalid" />
+    </form>
+</div>
 <p-toast />

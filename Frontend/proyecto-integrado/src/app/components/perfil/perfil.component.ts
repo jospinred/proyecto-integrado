@@ -61,6 +61,7 @@ export class PerfilComponent {
   listaOfertasUsuario: any[] = []
   listaOfertasApuntado: any[] = [];
   listaDemandasUsuario: any[] = [];
+  telefonoUsuario?: any;
   constructor(private rutaActiva: ActivatedRoute, private peticion: PAjaxService, private ruta: Router, private updateNav: UpdateNavService, private messageService: MessageService) {
     this.idUsuario = parseInt(localStorage.getItem("id") ?? "-1");
     let permisos = localStorage.getItem("permisos");
@@ -87,6 +88,7 @@ export class PerfilComponent {
     this.peticion.obtenerUsuarioPorId(this.rutaActiva.snapshot.params["id"]).subscribe({
       next: datos => {
         this.userUsername = datos.username;
+        this.telefonoUsuario = datos.telefono;
       },
       error: error => console.log(error)
     });

@@ -118,5 +118,9 @@ export class DatosOfertaComponent {
     }
   }
 
+  mostrarUsuariosApuntadosEnOferta(){
+    this.ruta.navigate(["usuarios-apuntados-oferta/"+this.ofertaId]);
+  }
+
   private ofertaId = this.rutaActiva.snapshot.params["id"];
 }

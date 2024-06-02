@@ -203,4 +203,23 @@ public class OfertaAPIController {
         ofertaService.updateOferta(ofertaBD);
         return new ResponseEntity<>(ofertaMapper.mapTo(ofertaBD), HttpStatus.OK);
     }
+
+    //Obtener usuarios apuntados a una oferta
+    @GetMapping(path = "/api/usuariosapuntadosoferta/{idOferta}")
+    public ResponseEntity<Object> getUsuariosApuntadosOferta(@PathVariable Long idOferta) {
+        logger.info("Get usuarios apuntados a la oferta con id: " + idOferta);
+        Optional<Oferta> oferta = ofertaService.findOfertaById(idOferta);
+        if (oferta.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        HashMap<String, String> mapa = new HashMap<>();
+        ArrayList<Object> listaSalida = new ArrayList<>();
+        Set<Consumidor> consumidoresApuntados = oferta.get().getConsumidoresApuntados();
+        for (Consumidor consumidor : consumidoresApuntados){
+            mapa.put("id", consumidor.getId().toString());
+            mapa.put("username", consumidor.getUsername());
+            listaSalida.add(mapa);
+        }
+        return new ResponseEntity<>(listaSalida, HttpStatus.OK);
+    }
 }

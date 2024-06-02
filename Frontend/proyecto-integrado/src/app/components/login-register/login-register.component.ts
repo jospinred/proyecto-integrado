@@ -22,7 +22,9 @@ import { ToastModule } from 'primeng/toast';
 
 export class LoginRegisterComponent {
   constructor(private peticion: PAjaxService, private ruta: Router, private updateLogin: UpdateNavService, private messageService: MessageService) {
-
+    if(localStorage.getItem("logged") ==  "true"){
+      this.ruta.navigate([""]);
+    }
   }
 
   public usuarioLogin: any = {
@@ -50,7 +52,7 @@ export class LoginRegisterComponent {
     { label: 'Ofertante', value: "ofertante" }
   ];
 
-  toggleForm = () => {    
+  toggleForm = () => {
     const container = document.querySelector('.container');
     console.log(container);
     container?.classList.toggle('active');
@@ -59,17 +61,22 @@ export class LoginRegisterComponent {
   logearUsuario(usuario: any) {
     console.log(this.usuarioLogin);
     this.messageService.add({ severity: 'info', summary: 'Iniciando sesión', detail: 'Se está iniciando sesión con las credenciales.' });
-    this.peticion.logear(this.usuarioLogin).subscribe(datos => {
-      localStorage.setItem('logged', "true");
-      localStorage.setItem('permisos', datos.permisos);
-      localStorage.setItem("username", datos.username);
-      localStorage.setItem('id', datos.id);
-      this.peticion.setToken(datos.token, datos.username);
-      this.updateLogin.establecerLogin({ login: true, username: datos.username })
-      this.messageService.add({ severity: 'success', summary: 'Sesión iniciada', detail: 'Se ha iniciado sesión correctamente.' });
-      setTimeout(() => {
-        this.ruta.navigate([""]);
-      }, 2000);
+    this.peticion.logear(this.usuarioLogin).subscribe({
+      next: datos => {
+        localStorage.setItem('logged', "true");
+        localStorage.setItem('permisos', datos.permisos);
+        localStorage.setItem("username", datos.username);
+        localStorage.setItem('id', datos.id);
+        this.peticion.setToken(datos.token, datos.username);
+        this.updateLogin.establecerLogin({ login: true, username: datos.username })
+        this.messageService.add({ severity: 'success', summary: 'Sesión iniciada', detail: 'Se ha iniciado sesión correctamente.' });
+        setTimeout(() => {
+          this.ruta.navigate([""]);
+        }, 2000);
+      },
+      error: err => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El usuario no existe.' });
+      }
     })
   }
 

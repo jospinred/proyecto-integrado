@@ -4,6 +4,7 @@ import { PAjaxService } from '../../services/p-ajax.service';
 import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel',
@@ -15,8 +16,11 @@ import { ToastModule } from 'primeng/toast';
 export class AdminPanelComponent {
   usuarios: any []=[];
 
-  constructor(private peticion: PAjaxService, private messageService: MessageService){
+  constructor(private peticion: PAjaxService, private messageService: MessageService, private ruta: Router){
     this.cargarUsuarios();
+    if(localStorage.getItem("permisos")!= "5" && localStorage.getItem("permisos")!= "6" && localStorage.getItem("permisos")!= "8" && localStorage.getItem("permisos")!= "9" ){
+      this.ruta.navigate([""]);
+    }
   }
 
   borrarUsuario(username:string){

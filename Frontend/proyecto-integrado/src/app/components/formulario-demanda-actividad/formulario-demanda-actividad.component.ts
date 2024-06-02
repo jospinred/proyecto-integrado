@@ -22,6 +22,9 @@ export class FormularioDemandaActividadComponent {
   };
   public actividadesDemanda: any[] = [];
   constructor(private peticion: PAjaxService, private ruta: Router, private messageService: MessageService) {
+    if(localStorage.getItem("permisos") !=  "1" && localStorage.getItem("permisos") !=  "4" && localStorage.getItem("permisos") !=  "6" && localStorage.getItem("permisos") !=  "9"){
+      this.ruta.navigate([""]);
+    }
     peticion.listarActividades().subscribe({
       next: datos => {
         this.actividadesDemanda = datos;

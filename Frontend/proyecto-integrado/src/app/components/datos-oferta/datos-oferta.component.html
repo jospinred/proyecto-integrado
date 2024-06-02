@@ -1,4 +1,5 @@
-<p>Actividad: {{ofertaCompleta?.actividad}}</p>
+<div class="contenedorDatosOferta">
+    <p>Actividad: {{ofertaCompleta?.actividad}}</p>
 <p>Descripcion: {{ofertaCompleta?.descripcion}}</p>
 <p>Duracion: {{ofertaCompleta?.duracion}}</p>
 <p>Fecha: {{ofertaCompleta?.fecha}}</p>
@@ -26,6 +27,7 @@
         }
     }
 } @else {
-    <p-button type="button" label="Oferta publicada por ti" [severity]="'danger'" [disabled]="true" />
+    <p-button type="button" label="Ver usuarios apuntados" (click)="mostrarUsuariosApuntadosEnOferta()"/>
 }
+</div>
 <p-toast />

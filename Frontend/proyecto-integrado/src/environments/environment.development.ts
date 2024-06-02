@@ -18,5 +18,6 @@ export const environment = {
     apiUrlPreferenciasPorId: 'http://localhost:8080/api/usuarioPreferencias/',
     apiUrlCualificacionPorId: 'http://localhost:8080/api/usuarioCualificaciones/',
     apiUrlBorrarPorUsername: 'http://localhost:8080/api/usuario-username/',
-    apiUrlListaOfertasApuntado: "http://localhost:8080/api/ofertasapuntado/"
+    apiUrlListaOfertasApuntado: 'http://localhost:8080/api/ofertasapuntado/',
+    apiUrlListaUsuariosApuntadosOferta: 'http://localhost:8080/api/usuariosapuntadosoferta/'
 };

@@ -300,4 +300,14 @@ export class PAjaxService {
     };
     return this.http.delete<any>(this.url, httpOptions);
   }
+
+  listaUsuariosApuntadosOferta(idOferta:number) {
+    this.url = environment.apiUrlListaUsuariosApuntadosOferta+idOferta;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.get<any>(this.url, httpOptions);
+  }
 }

@@ -1,84 +1,86 @@
-<form #ofertaCrear="ngForm" (ngSubmit)="crearOferta(ofertaCrear.value)">
-    <h2>Crear una oferta</h2>
-    <div class="contenedorInput">
-        <label class="form-label" for="actividad">Actividad</label>
-        <select name="actividad" id="actividad" class="form-control" [(ngModel)]="datosOferta.actividad">
-            @for (a of actividades; track $index) {
-            <option [value]="a.id">{{a.nombre}}</option>
-            }
-        </select>
-    </div>
-    <div class="contenedorInput">
-        <label class="form-label" for="fecha">Fecha</label>
-        <input class="form-control" id="fecha" type="date" required name="fecha" #fecha="ngModel" size="10"
-            [(ngModel)]="datosOferta.fecha" />
-    </div>
-    <div class="contenedorInput">
-        <label class="form-label" for="localidad">Localidad</label>
-        <input class="form-control" id="localidad" type="text" required name="localidad" #localidad="ngModel" size="10"
-            [(ngModel)]="datosOferta.localidad" />
-        <div [hidden]="localidad.valid || localidad.pristine" class="error-form">
-            El localidad es obligatorio
+<div class="contenedorCrearNuevaOferta">
+    <form #ofertaCrear="ngForm" (ngSubmit)="crearOferta(ofertaCrear.value)">
+        <h2>Crear una oferta</h2>
+        <div class="contenedorInput">
+            <label class="form-label" for="actividad">Actividad</label>
+            <select name="actividad" id="actividad" class="form-control" [(ngModel)]="datosOferta.actividad">
+                @for (a of actividades; track $index) {
+                <option [value]="a.id">{{a.nombre}}</option>
+                }
+            </select>
         </div>
-    </div>
-    <div class="contenedorInput">
-        <label class="form-label" for="preparacionNecesaria">Preparacion necesaria</label>
-        <input class="form-control" id="preparacionNecesaria" type="text" required name="preparacionNecesaria"
-            #preparacionNecesaria="ngModel" size="10" [(ngModel)]="datosOferta.preparacionNecesaria" />
-        <div [hidden]="preparacionNecesaria.valid || preparacionNecesaria.pristine" class="error-form">
-            La preparación necesaria es obligatoria
+        <div class="contenedorInput">
+            <label class="form-label" for="fecha">Fecha</label>
+            <input class="form-control" id="fecha" type="date" required name="fecha" #fecha="ngModel" size="10"
+                [(ngModel)]="datosOferta.fecha" />
         </div>
-    </div>
-    <div class="contenedorInput">
-        <label class="form-label" for="tarifa">Tarifa</label>
-        <input class="form-control" id="tarifa" type="number" required name="tarifa" #tarifa="ngModel" size="10"
-            [(ngModel)]="datosOferta.tarifa" />
-        <div [hidden]="tarifa.valid || tarifa.pristine" class="error-form">
-            La tarifa es obligatoria
+        <div class="contenedorInput">
+            <label class="form-label" for="localidad">Localidad</label>
+            <input class="form-control" id="localidad" type="text" required name="localidad" #localidad="ngModel"
+                size="10" [(ngModel)]="datosOferta.localidad" />
+            <div [hidden]="localidad.valid || localidad.pristine" class="error-form">
+                El localidad es obligatorio
+            </div>
         </div>
-    </div>
-    <div class="contenedorInput">
-        <label class="form-label" for="duracion">Duración</label>
-        <input class="form-control" id="duracion" type="text" required name="duracion" #duracion="ngModel" size="10"
-            [(ngModel)]="datosOferta.duracion" />
-        <div [hidden]="duracion.valid || duracion.pristine" class="error-form">
-            La duracion es obligatoria
+        <div class="contenedorInput">
+            <label class="form-label" for="preparacionNecesaria">Preparacion necesaria</label>
+            <input class="form-control" id="preparacionNecesaria" type="text" required name="preparacionNecesaria"
+                #preparacionNecesaria="ngModel" size="10" [(ngModel)]="datosOferta.preparacionNecesaria" />
+            <div [hidden]="preparacionNecesaria.valid || preparacionNecesaria.pristine" class="error-form">
+                La preparación necesaria es obligatoria
+            </div>
         </div>
-    </div>
-    <div class="contenedorInput">
-        <label class="form-label" for="minimoPlazas">Minimo de plazas</label>
-        <input class="form-control" id="minimoPlazas" type="number" minlength="1" required name="minimoPlazas"
-            #minimoPlazas="ngModel" [(ngModel)]="datosOferta.minimoPlazas" />
-        <div [hidden]="minimoPlazas.valid || minimoPlazas.pristine" class="error-form">
-            El minimo de plazas es obligatoria
+        <div class="contenedorInput">
+            <label class="form-label" for="tarifa">Tarifa</label>
+            <input class="form-control" id="tarifa" type="number" required name="tarifa" #tarifa="ngModel" size="10"
+                [(ngModel)]="datosOferta.tarifa" />
+            <div [hidden]="tarifa.valid || tarifa.pristine" class="error-form">
+                La tarifa es obligatoria
+            </div>
         </div>
-    </div>
-    <div class="contenedorInput">
-        <label class="form-label" for="maximoPlazas">Máximo de plazas</label>
-        <input class="form-control" id="maximoPlazas" type="number" minlength="1" required name="maximoPlazas"
-            #maximoPlazas="ngModel" [(ngModel)]="datosOferta.maximoPlazas" />
-        <div [hidden]="maximoPlazas.valid || maximoPlazas.pristine" class="error-form">
-            El minimo de plazas es obligatoria
+        <div class="contenedorInput">
+            <label class="form-label" for="duracion">Duración</label>
+            <input class="form-control" id="duracion" type="text" required name="duracion" #duracion="ngModel" size="10"
+                [(ngModel)]="datosOferta.duracion" />
+            <div [hidden]="duracion.valid || duracion.pristine" class="error-form">
+                La duracion es obligatoria
+            </div>
         </div>
-    </div>
-    <div class="contenedorInput">
-        <label class="form-label" for="descripcion">Descripción</label>
-        <input class="form-control" id="descripcion" type="text" required name="descripcion" #descripcion="ngModel"
-            size="10" [(ngModel)]="datosOferta.descripcion" />
-        <div [hidden]="descripcion.valid || descripcion.pristine" class="error-form">
-            La descripción es obligatoria
+        <div class="contenedorInput">
+            <label class="form-label" for="minimoPlazas">Minimo de plazas</label>
+            <input class="form-control" id="minimoPlazas" type="number" minlength="1" required name="minimoPlazas"
+                #minimoPlazas="ngModel" [(ngModel)]="datosOferta.minimoPlazas" />
+            <div [hidden]="minimoPlazas.valid || minimoPlazas.pristine" class="error-form">
+                El minimo de plazas es obligatoria
+            </div>
         </div>
-    </div>
-    <div class="contenedorInput">
-        <label class="form-label" for="materialOfertado">Material ofertado</label>
-        <input class="form-control" id="materialOfertado" type="text" required name="materialOfertado"
-            #materialOfertado="ngModel" size="10" [(ngModel)]="datosOferta.materialOfertado" />
-    </div>
-    <div class="contenedorInput">
-        <label class="form-label" for="materialNecesario">Material necesario</label>
-        <input class="form-control" id="materialNecesario" type="text" required name="materialNecesario"
-            #materialNecesario="ngModel" size="10" [(ngModel)]="datosOferta.materialNecesario" />
-    </div>
-    <p-button type="submit" label="Crear oferta" />
-</form>
+        <div class="contenedorInput">
+            <label class="form-label" for="maximoPlazas">Máximo de plazas</label>
+            <input class="form-control" id="maximoPlazas" type="number" minlength="1" required name="maximoPlazas"
+                #maximoPlazas="ngModel" [(ngModel)]="datosOferta.maximoPlazas" />
+            <div [hidden]="maximoPlazas.valid || maximoPlazas.pristine" class="error-form">
+                El minimo de plazas es obligatoria
+            </div>
+        </div>
+        <div class="contenedorInput">
+            <label class="form-label" for="descripcion">Descripción</label>
+            <input class="form-control" id="descripcion" type="text" required name="descripcion" #descripcion="ngModel"
+                size="10" [(ngModel)]="datosOferta.descripcion" />
+            <div [hidden]="descripcion.valid || descripcion.pristine" class="error-form">
+                La descripción es obligatoria
+            </div>
+        </div>
+        <div class="contenedorInput">
+            <label class="form-label" for="materialOfertado">Material ofertado</label>
+            <input class="form-control" id="materialOfertado" type="text" required name="materialOfertado"
+                #materialOfertado="ngModel" size="10" [(ngModel)]="datosOferta.materialOfertado" />
+        </div>
+        <div class="contenedorInput">
+            <label class="form-label" for="materialNecesario">Material necesario</label>
+            <input class="form-control" id="materialNecesario" type="text" required name="materialNecesario"
+                #materialNecesario="ngModel" size="10" [(ngModel)]="datosOferta.materialNecesario" />
+        </div>
+        <p-button type="submit" label="Crear oferta" />
+    </form>
+</div>
 <p-toast />

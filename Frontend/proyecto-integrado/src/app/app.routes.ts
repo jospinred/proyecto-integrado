@@ -8,6 +8,7 @@ import { DatosOfertaComponent } from './components/datos-oferta/datos-oferta.com
 import { FormularioDemandaActividadComponent } from './components/formulario-demanda-actividad/formulario-demanda-actividad.component';
 import { ListaDemandasComponent } from './components/lista-demandas/lista-demandas.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { UsuariosApuntadosOfertaComponent } from './components/usuarios-apuntados-oferta/usuarios-apuntados-oferta.component';
 
 export const routes: Routes = [
   {
@@ -41,10 +42,13 @@ export const routes: Routes = [
   {
     path: "datos-oferta/:id",
     component: DatosOfertaComponent
-  }
-  ,
+  },
   {
     path: "admin",
     component: AdminPanelComponent
+  },
+  {
+    path: "usuarios-apuntados-oferta/:id",
+    component: UsuariosApuntadosOfertaComponent
   }
 ];
